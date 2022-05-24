@@ -4,6 +4,11 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :genres, only: [:index, :edit, :create, :update]
     resources :items, only: [:index, :new, :show, :edit, :create, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+  end
+  
+  namespace :public do
+    
   end
   
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
