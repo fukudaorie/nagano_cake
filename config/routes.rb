@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
  
+  namespace :public do
+    get 'customer/show'
+    get 'customer/edit'
+    get 'customer/unsubscribe'
+  end
   namespace :admin do
     root to: 'homes#top'
     resources :genres, only: [:index, :edit, :create, :update]
