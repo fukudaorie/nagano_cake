@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
  
   namespace :public do
-    get 'customer/show'
-    get 'customer/edit'
+    root to: 'homes#top'
+    get 'customers/my_page' => 'customers#show'
+    resources :customers, only: [:edit, :update]
     get 'customer/unsubscribe'
   end
+
   namespace :admin do
     root to: 'homes#top'
     resources :genres, only: [:index, :edit, :create, :update]
@@ -12,10 +14,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
   end
   
-  namespace :public do
-    
-  end
-  
+
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }

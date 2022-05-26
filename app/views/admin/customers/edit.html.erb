@@ -1,2 +1,28 @@
-<h1>Admin::Customer#edit</h1>
-<p>Find me in app/views/admin/customer/edit.html.erb</p>
+<h2><%= @customer.full_name %>さんの会員情報編集</h2>
+
+<%= form_with model: @customer, url: admin_customer_path(@customer.id) do |f| %>
+<label>会員ID</label>
+<%= @customer.id %><br />
+
+<%= f.label "氏名" %>
+<%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+<%= f.text_field :first_name, autofocus: true, autocomplete: "last_name" %><br />
+
+<%= f.label "フリガナ" %>
+<%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+<%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %><br />
+
+<%= f.label "郵便番号を(ハイフンなし)" %>
+<%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %><br />
+
+<%= f.label "住所" %>
+<%= f.text_field :address, autofocus: true, autocomplete: "address" %><br />
+
+<%= f.label "電話番号(ハイフンなし)" %>
+<%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %><br />
+
+<%= f.label "メールアドレス" %>
+<%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
+
+  
+<% end %>
