@@ -1,0 +1,14 @@
+<% if @item.image.attached? %>
+  <%= image_tag @item.image, size: "200x200" %>
+<% else %>
+  <%= image_tag 'no_image', size: "200x200" %>
+<% end %>
+
+<h2><%= @item.name %></h2>
+<h3><%= @item.introduction %></h3>
+<h2>¥<%= @item.add_tax_price.to_s(:delimited) %></h2>(税込)
+
+<%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
+<%= f.select :amount, *[1..10] %>
+<%= f.submit 'カートに入れる' %>
+<% end %>

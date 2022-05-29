@@ -1,0 +1,29 @@
+<h2>ショッピングカート</h2>
+<table class = "table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
+    </tr>
+  </thead>
+  <%= form_with model: @cart_item, url: public_cart_item_path do |f| %>
+  <tbody>
+    <tr>
+      <td>
+        <%= image_tag @cart_item.item.image, size: "30x30" %>
+        <%= @cart_item.item.name %>
+      </td>
+      <td><%= @item.add_tax_price %></td>
+      <td>
+        <%= f.select :amount, *[1..10] %>
+        <%= f.submit '変更' %>
+      </td>
+      <td><%= @cart_item.subtotal %></td>
+      <td></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

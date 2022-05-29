@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
  
   namespace :public do
+    get 'cart_items/index'
+  end
+  namespace :admin do
+    get 'orders/show'
+  end
+  namespace :public do
     root to: 'homes#top'
     get 'customers/my_page' => 'customers#show'
     resources :customers, only: [:edit, :update]
     get 'customer/unsubscribe'
+    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :update, :create, :destroy]
   end
 
   namespace :admin do
