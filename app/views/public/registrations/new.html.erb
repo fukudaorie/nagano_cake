@@ -8,31 +8,29 @@
   (姓)
   <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
   (名)
-  <%= f.text_field :first_name, autofocus: true, autocomplete: "last_name" %>
+  <%= f.text_field :first_name, autofocus: true, autocomplete: "last_name" %><br/>
   <%= f.label "フリガナ" %>
   (セイ)
   <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
   (メイ)
-  <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+  <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %><br />
 
 
   <%= f.label "メールアドレス" %>
-  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
   <%= f.label "郵便番号を(ハイフンなし)" %>
-  
-  <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+  <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %><br />
   <%= f.label "住所" %>
-  <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+  <%= f.text_field :address, autofocus: true, autocomplete: "address" %><br />
   <%= f.label "電話番号(ハイフンなし)" %>
-  <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %>
+  <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %><br />
     <%= f.label "パスワード" %>
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> 文字以上)</em>
     <% end %>
-  
-  <%= f.password_field :password, autocomplete: "new-password" %>
+  <%= f.password_field :password, autocomplete: "new-password" %><br />
   <%= f.label "パスワード(確認用)" %>
-  <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br />
   <div class="actions">
     <%= f.submit "新規登録" %>
   </div>

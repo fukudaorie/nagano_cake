@@ -1,6 +1,7 @@
 class Public::CartItemsController < ApplicationController
   def index
     @cart_item = CartItem.new
+    @cart_items = CartItem.all
   end
   
   def update
@@ -16,9 +17,15 @@ class Public::CartItemsController < ApplicationController
   end
   
   def destroy
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
+    redirect_to public_cart_items_path
   end
   
   def destroy_all
+    @cart_items = current_customer.cart_items
+    @cart_items.destroy_all
+    redirect_to public_cart_items_path
   end
   
   private
