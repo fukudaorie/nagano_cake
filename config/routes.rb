@@ -16,9 +16,13 @@ Rails.application.routes.draw do
     resources :customers, only: [:edit, :update]
     get 'customer/unsubscribe'
     resources :items, only: [:index, :show]
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'cart_items_destroy_all'
     resources :cart_items, only: [:index, :update, :create, :destroy]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-    delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'cart_items_destroy_all'
+    resources :orders, only: [:new, :index, :show]
+    get 'orders/complete'
+    post 'orders/comfirm'
+    get 'orders/comfirm'
   end
 
   namespace :admin do

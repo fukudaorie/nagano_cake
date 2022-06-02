@@ -1,5 +1,11 @@
 class Admin::HomesController < ApplicationController
   def top
-    @ordesr = Order.all
+    @orders = Order.all
+  end
+  
+  private
+  
+  def order_params
+    params.require(:order).permit(:name, :status, :created_at)
   end
 end
