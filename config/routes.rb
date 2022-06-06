@@ -7,9 +7,6 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
-  namespace :admin do
-    get 'orders/show'
-  end
   namespace :public do
     root to: 'homes#top'
     get 'customers/my_page' => 'customers#show'
@@ -19,10 +16,18 @@ Rails.application.routes.draw do
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'cart_items_destroy_all'
     resources :cart_items, only: [:index, :update, :create, :destroy]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-    resources :orders, only: [:new, :index, :show]
-    get 'orders/complete'
-    post 'orders/comfirm'
-    get 'orders/comfirm'
+    resources :orders, only: [:new, :index, :show, :create] do
+      collection do
+        get :complete
+        get :comfirm
+        post :comfirm
+      end
+      member do
+      end
+    end
+    #get 'orders/complete'
+    #post 'orders/comfirm'
+    #get 'orders/comfirm'
   end
 
   namespace :admin do
@@ -30,6 +35,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :edit, :create, :update]
     resources :items, only: [:index, :new, :show, :edit, :create, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show, :update]
   end
   
 

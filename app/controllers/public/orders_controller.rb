@@ -14,16 +14,18 @@ class Public::OrdersController < ApplicationController
   def show
   end
   
-  def confirm
+  def comfirm
     @order = Order.new(order_params)
+    # current_customer => cart_items => items
+    @items = current_customer.items
     if params[:order][:address] == "0"
     @order.postal_code = current_customer.postal_code
     @order.address = current_customer.address
     @order.name = current_customer.name
     elsif params[:order][:address] == "1"
       @order.postal_code = Address.find(params[:order][:address_id]).postal_code
-    @order.address = Address.find(params[:order][:address_id]).address
-    @order.name = Address.find(params[:order][:address_id]).name
+      @order.address = Address.find(params[:order][:address_id]).address
+      @order.name = Address.find(params[:order][:address_id]).name
     elsif params[:order][:address] == "2"
       @new_address = Address.new
       @new_address.postal_code = params[:order][:postal_code]
@@ -38,9 +40,16 @@ class Public::OrdersController < ApplicationController
         render :new
       end
     end
-    @cart_items = CartItem.where(customer_id: current_customer.id)
+    # @cart_items = CartItem.where(customer_id: current_customer.id)
+    @cart_items = current_customer.cart_items
     @total = 0
-    redirect_to public_orders_comfirm_path(current_customer)
+    @shipping_cost = 800
+  end
+  
+  def create
+    @order = Order.new(order_params)
+    @cart_item = CartItem.new
+    redirect_to admin_order_path
   end
   
   private
