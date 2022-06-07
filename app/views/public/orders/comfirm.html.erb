@@ -46,11 +46,17 @@
 <%= @order.payment_method_i18n %>
 
 <p>お届け先</p>
-<%= @order.address %>
+<%= "〒" + @order.postal_code + " " + @order.address %><br />
+<%= @order.name %><br />
 
-<%= form_with model: @cart_item, url: public_orders_path, method: :post do |f| %>
-<%= f.hidden_field :item_id, :value => current_customer.items %>
-<%= f.hidden_field :customer_id, :value => current_customer.id %>
-<%= f.hidden_field :amount, :value => @cart_item.amount %>
+<%= form_with model: @order, url: public_orders_path, method: :post do |f| %>
+<% @total_total = @shipping_cost + @total %>
+<%= f.hidden_field :postal_code, :value => @order.postal_code %>
+<%= f.hidden_field :address, :value => @order.address %>
+<%= f.hidden_field :name, :value => @order.name %>
+<%= f.hidden_field :total_payment, :value => @total_total %>
+<%= f.hidden_field :payment_method, :value => @order.payment_method %>
+<%= f.hidden_field :shipping_cost, :value => @shipping_cost %>
+
 <%= f.submit "注文を確定する" %>
 <% end %>

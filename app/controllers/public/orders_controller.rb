@@ -48,8 +48,16 @@ class Public::OrdersController < ApplicationController
   
   def create
     @order = Order.new(order_params)
-    @cart_item = CartItem.new
-    redirect_to admin_order_path
+    @order.customer_id = current_customer.id
+    @order.save
+    @order_details = OrderDetail.new
+    @cart_items = current_customer.cart_items
+    @order_details.item_id = @cart_item.item_id
+    @order_details.amount = @cart_item.amount
+    @order_details.price = @cart_item.item.add_tax_price
+    @order_details.save
+    current_customer.cart_items.destroy_all
+    redirect_to complete_public_orders_path
   end
   
   private
