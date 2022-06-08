@@ -8,7 +8,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    
+    @orders = current_customer.orders
+    @items = current_customer.items
   end
 
   def show

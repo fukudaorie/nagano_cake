@@ -10,8 +10,11 @@ Rails.application.routes.draw do
   namespace :public do
     root to: 'homes#top'
     get 'customers/my_page' => 'customers#show'
-    resources :customers, only: [:edit, :update]
-    get 'customer/unsubscribe'
+    resources :customers, only: [:edit, :update] do
+      collection do
+        get :unsubscribe
+      end
+    end
     resources :items, only: [:index, :show]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'cart_items_destroy_all'
     resources :cart_items, only: [:index, :update, :create, :destroy]
