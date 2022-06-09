@@ -20,12 +20,14 @@
         <%= order.name %>
       </td>
       <td>
-        <% @items.each do |item| %>
-        <%= item.name %>
+        <% order.order_details.each do |order_detail| %>
+        <%= order_detail.item.name %><br />
         <% end %>
       </td>
-      <td></td>
-      <td></td>
+      <td>
+        <%= order.total_payment %>
+      </td>
+      <td><%= order.status %></td>
       <td><%= link_to "表示する", public_order_path(order) %></td>
     </tr>
     <% end %>
