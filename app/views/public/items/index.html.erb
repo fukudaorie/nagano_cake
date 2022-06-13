@@ -1,12 +1,19 @@
+<div class = "container">
 <h2>商品一覧</h2>
+<div class = "row">
 <% @items.each do |item| %>
+<div class = "col-md-3">
 <%= link_to public_item_path(item.id) do %>
   <% if item.image.attached? %>
-    <%= image_tag item.image, size: "200x200" %>
+    <%= image_tag item.image, size: "1000x100" %>
   <% else %>
-    <%= image_tag 'no_image', size: "200x200" %>
+    <%= image_tag 'no_image', size: "100x100" %>
   <% end %>
 <% end %><br />
-<%= item.name %>
-¥<%= item.price.to_s(:delimited) %>
+<%= item.name %><br />
+¥<%= item.price.to_s(:delimited) %><br />
+</div>
 <% end %>
+</div>
+  <%= paginate @items %>
+</div>

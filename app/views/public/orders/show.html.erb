@@ -1,11 +1,11 @@
 <din class = "container">
   <h2>注文履歴詳細</h2>
   <div class = "row">
-    <div class = "col-7">
+    <div class = "col-md-7">
     <p>注文情報</p>
-    <table class = "table table-bordered ">
+    <table class = "table table-bordered">
       <tr>
-        <th class = table-secondary>注文日</th>
+        <th class = "table-secondary">注文日</th>
         <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
       </tr>
        <tr>
@@ -26,7 +26,7 @@
       </tr>
     </table>
     </div>
-    <div class = "col-3">
+    <div class = "col-md-3">
       <p>請求情報</p>
     <table class = "table table-bordered">
       <tr>
@@ -45,9 +45,10 @@
     </div>
   </div>
   <div class = "row">
+    <div class = "col-md-9">
     <p>注文内容</p>
     <table class = "table table-bordered">
-      <thead>
+      <thead class = table-secondary>
         <tr>
           <th>商品</th>
           <th>単価(税込)</th>
@@ -66,5 +67,6 @@
         <% end %>
       </tbody>
     </table>
+    </div>
   </div>
 </din>

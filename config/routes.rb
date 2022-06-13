@@ -9,10 +9,12 @@ Rails.application.routes.draw do
 }
   namespace :public do
     root to: 'homes#top'
+    get '/about' => 'homes#about'
     get 'customers/my_page' => 'customers#show'
     resources :customers, only: [:edit, :update] do
       collection do
         get :unsubscribe
+        patch :withdraw
       end
     end
     resources :items, only: [:index, :show]

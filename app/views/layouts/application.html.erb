@@ -20,6 +20,7 @@
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          <div>ようこそ、<%= current_customer.last_name %>さん！</div>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
@@ -27,10 +28,10 @@
                 <%= link_to "マイページ",  public_customers_my_page_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "商品一覧", public_root_path, class: 'nav-link text-dark' %>
+                <%= link_to "商品一覧", public_items_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "カート", public_root_path, class: 'nav-link text-dark' %>
+                <%= link_to "カート", public_cart_items_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
@@ -53,10 +54,10 @@
               </li>
               <% else %>
               <li class="nav-item">
-                <%= link_to "About", public_root_path, class: 'nav-link text-dark' %>
+                <%= link_to "About", public_about_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "商品一覧", public_root_path, class: 'nav-link text-dark' %>
+                <%= link_to "商品一覧", public_items_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
                 <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
