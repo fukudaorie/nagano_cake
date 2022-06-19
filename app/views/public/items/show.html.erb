@@ -1,16 +1,25 @@
-<% if @item.image.attached? %>
-  <%= image_tag @item.image, size: "200x200" %>
-<% else %>
-  <%= image_tag 'no_image', size: "200x200" %>
-<% end %>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-4">
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, size: "200x200" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "200x200" %>
+      <% end %>
+    </div>
+    <div class = "col-md-8">
+      <h3><%= @item.name %></h3>
+      <h5><%= @item.introduction %></h5><br />
+      <div class = "h4">¥<%= @item.add_tax_price %>(税込)</div>
+      <%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
+      <%= f.hidden_field :item_id, :value => @item.id %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <div class = "row">
+        <%= f.select :amount, *[1..10], { include_blank: '個数選択'}, class: "form-control col-md-2 mr-5" %>
+        <%= f.submit 'カートに入れる', class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h2><%= @item.name %></h2>
-<h3><%= @item.introduction %></h3>
-<h2>¥<%= @item.add_tax_price.to_s(:delimited) %></h2>(税込)
-
-<%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
-<%= f.hidden_field :item_id, :value => @item.id %>
-<%= f.hidden_field :customer_id, :value => current_customer.id %>
-<%= f.select :amount, *[1..10] %>
-<%= f.submit 'カートに入れる' %>
-<% end %>

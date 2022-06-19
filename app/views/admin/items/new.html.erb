@@ -1,19 +1,55 @@
-<h2>商品新規登録</h2>
-<%= form_with model: @item, url: admin_items_path, local: true do |f| %>
-<%= f.label "商品画像" %>
-<%= f.file_field :image, accept: "image/*" %><br />
-<%= f.label "商品名" %>
-<%= f.text_field :name %><br />
-<%= f.label "商品説明" %>
-<%= f.text_area :introduction %><br />
-<%= f.label "ジャンル" %>
-<%= f.collection_select :genre_id, Genre.all, :id, :name, { include_blank: '--選択してください--'} %><br />
-<%= f.label "税抜価格" %>
-<%= f.text_field :price %>円<br />
-<%= f.label "販売ステータス" %>
-  <%= f.radio_button :is_active, :true, checked: true %>
-  <%= f.label :is_active, '販売中' %>
-  <%= f.radio_button :is_active, :false %>
-  <%= f.label :is_active, '販売停止中' %><br />
-  <%= f.submit '新規登録' %>
-<% end %>
+<div class = "container">
+  <div class = "ml-5 mb-5">
+    <h3>商品新規登録</h3>
+  </div>
+  <%= form_with model: @item, url: admin_items_path, local: true do |f| %>
+  <div class = "row mb-3">
+    <div class = "col-md-2">
+      <%= f.label "商品画像" %>
+    </div>
+    <div class = "col-md-3">
+      <%= f.file_field :image, accept: "image/*" %><br />
+    </div>
+  </div>
+  <div class = "row mb-3">
+    <div class = "col-md-2">
+      <%= f.label "商品名" %>
+    </div>
+    <%= f.text_field :name, class: "form-control col-md-3" %>
+  </div>
+  <div class = "row mb-3">
+    <div class = "col-md-2">
+      <%= f.label "商品説明" %>
+    </div>
+    <%= f.text_area :introduction, class: "form-control col-md-3" %>
+  </div>
+  <div class = "row mb-3">
+    <div class = "col-md-2">
+      <%= f.label "ジャンル" %>
+    </div>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name, { include_blank: '--選択してください--'}, class: "form-control col-md-3" %>
+  </div>
+  <div class = "row mb-3">
+    <div class = "col-md-2">
+      <%= f.label "税抜価格" %>
+    </div>
+    <%= f.text_field :price, class: "form-control col-md-3" %>円
+  </div>
+  <div class = "row mb-3">
+    <div class = "col-md-2">
+      <%= f.label "販売ステータス" %>
+    </div>
+    <div class = "col-md-4">
+      <%= f.radio_button :is_active, :true, checked: true %>
+      <%= f.label :is_active, '販売中' %>
+      <%= f.radio_button :is_active, :false %>
+      <%= f.label :is_active, '販売停止中' %>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-md-6 mx-auto">
+    <%= f.submit '新規登録', class: "btn btn-success" %>
+    </div>
+  </div>
+  <% end %>
+</div>

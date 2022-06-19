@@ -3,7 +3,7 @@
     <div class = "col mx-auto">
     <h2>注文履歴一覧</h2>
     <table class = "table table-bordered">
-      <thead class = table-secondary>
+      <thead class = "table-secondary">
         <tr>
           <th>注文日</th>
           <th>配送先</th>
@@ -30,7 +30,7 @@
           <td>
             <%= order.total_payment %>
           </td>
-          <td><%= order.status %></td>
+          <td><%= order.status_i18n %></td>
           <td><%= link_to "表示する", public_order_path(order), class: 'btn btn-primary' %></td>
         </tr>
         <% end %>

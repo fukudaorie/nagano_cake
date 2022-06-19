@@ -1,11 +1,13 @@
 class Item < ApplicationRecord
   has_one_attached :image
-  belongs_to :genre, dependent: :destroy
-  has_many :cart_items
+  belongs_to :genre
+  has_many :cart_items, dependent: :destroy
   has_many :order_details, dependent: :destroy
   
+  paginates_per 10
+  
   def add_tax_price
-    (self.price*1.10).floor
+    (price*1.1).floor
   end
 end
 

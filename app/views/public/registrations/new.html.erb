@@ -1,5 +1,5 @@
 <div class = "container">
-<h3>新規会員登録</h3>
+<h3 class = "ml-5 mb-5">新規会員登録</h3>
 
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
@@ -47,12 +47,14 @@
   <%= f.label "パスワード(確認用)", class: "col-md-3" %>
   <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control col-md-2' %><br />
   </div>
-  <div class = "row">
+  <div class = "row mb-3">
     <div class = "col-md-3"></div>
     <%= f.submit "新規登録", class: "btn btn-success col-md-2" %>
   </div>
 <% end %>
 
-<h3>既に登録済みの方</h3>
-<%= link_to "こちら", new_session_path(resource_name) %> からログインしてください。
+<h3 class = "ml-3">既に登録済みの方</h3>
+<div class = "offset-md-1">
+    <%= link_to "こちら", new_session_path(resource_name), class: "btn btn-link" %> からログインしてください。
+</div>
 </div>

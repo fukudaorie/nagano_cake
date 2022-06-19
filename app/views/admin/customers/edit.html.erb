@@ -1,34 +1,68 @@
-<h2><%= @customer.full_name %>さんの会員情報編集</h2>
+<div class = "container">
+<h3><%= @customer.full_name %>さんの会員情報編集</h3>
 
 <%= form_with model: @customer, url: admin_customer_path(@customer.id) do |f| %>
-<label>会員ID</label>
-<%= @customer.id %><br />
-
-<%= f.label "氏名" %>
-<%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-<%= f.text_field :first_name, autofocus: true, autocomplete: "last_name" %><br />
-
-<%= f.label "フリガナ" %>
-<%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
-<%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %><br />
-
-<%= f.label "郵便番号を(ハイフンなし)" %>
-<%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %><br />
-
-<%= f.label "住所" %>
-<%= f.text_field :address, autofocus: true, autocomplete: "address" %><br />
-
-<%= f.label "電話番号(ハイフンなし)" %>
-<%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %><br />
-
-<%= f.label "メールアドレス" %>
-<%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
-
-<%= f.label "会員ステータス" %>
-<%= f.radio_button :is_delete, :false, checked: true %>
-<%= f.label :is_delete, '有効' %>
-<%= f.radio_button :is_delete, :true %>
-<%= f.label :is_delete, '退会' %><br />
-
-<%= f.submit "変更を保存" %>
+<div class = "row p-1">
+    <div class = "col-md-2">
+        <label>会員ID</label>
+    </div>
+    <div class = "col">
+        <%= @customer.id %>
+    </div>
+</div>
+<div class = "row p-1">
+    <div class = "col-md-2">
+        <%= f.label "氏名" %>
+    </div>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: 'form-control col-md-2 mr-5' %>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "last_name", class: 'form-control col-md-2' %>
+</div>
+<div class = "row p-1">
+    <div class = "col-md-2">
+        <%= f.label "フリガナ" %>
+    </div>
+    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class: 'form-control col-md-2 mr-5' %>
+    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: 'form-control col-md-2' %>
+</div>
+<div class = "row p-1">
+    <div class = "col-md-2">
+        <%= f.label "郵便番号" %>
+    </div>
+    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: 'form-control col-md-2' %>
+</div>
+<div class = "row p-1">
+    <div class = "col-md-2">
+        <%= f.label "住所" %>
+    </div>
+    <%= f.text_field :address, autofocus: true, autocomplete: "address", class: 'form-control col-md-6' %>
+</div>
+<div class = "row p-1">
+    <div class = "col-md-2">
+        <%= f.label "電話番号" %>
+    </div>
+    <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class: 'form-control col-md-2' %>
+</div>
+<div class = "row p-1">
+    <div class = "col-md-2">
+        <%= f.label "メールアドレス" %>
+    </div>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control col-md-2' %>
+</div>
+<div class = "row p-1">
+    <div class = "col-md-2">
+        <%= f.label "会員ステータス" %>
+    </div>
+    <div class = "col">
+        <%= f.radio_button :is_delete, :false, checked: true %>
+        <%= f.label :is_delete, '有効' %>
+        <%= f.radio_button :is_delete, :true %>
+        <%= f.label :is_delete, '退会' %>
+    </div>
+</div>
+<div class = "row">
+    <div class = "text-center offset-md-2">
+    <%= f.submit "変更を保存" , class: "btn btn-success" %>
+    </div>
+</div>
 <% end %>
+</div>

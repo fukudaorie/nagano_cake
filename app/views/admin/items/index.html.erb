@@ -1,23 +1,50 @@
-<h2>商品一覧</h2>
-<table class = "table">
-    <thead>
-        <tr>
-            <th>商品ID</th>
-            <th>商品名</th>
-            <th>税抜価格</th>
-            <th>ジャンル</th>
-            <th>ステータス</th>
-        </tr>
-    </thead>
-    <% @items.each do |item| %>
-    <tbody>
-        <tr>
-            <td><%= item.id %></td>
-            <td><%= item.name %></td>
-            <td><%= item.price %></td>
-            <td><%= item.genre.name %></td>
-            <td><%= item.is_active %></td>
-        </tr>
-    </tbody>
-    <% end %>
-</table>
+<div class = "container">
+    <div class = "row">
+        <div class = "col-8">
+        <h3 class = "ml-3 mb-5">商品一覧</h3>
+        </div>
+        <div class = "col-1">
+        <div class = "justify-content-md-end">
+            <%= link_to "＋", new_admin_item_path, class: "btn btn-outline-dark rounded-circle p-0", style: "width:2rem;height:2rem;" %>
+        </div>
+        </div>
+    
+    </div>
+    <div class = "row">
+        <div class = "col-10">
+            <table class = "table">
+                <thead class = "table-secondary">
+                    <tr>
+                        <th class = "col-md-1">商品ID</th>
+                        <th>商品名</th>
+                        <th>税抜価格</th>
+                        <th>ジャンル</th>
+                        <th>ステータス</th>
+                    </tr>
+                </thead>
+                <% @items.each do |item| %>
+                <tbody>
+                    <tr>
+                        <td><%= item.id %></td>
+                        <td><%= item.name %></td>
+                        <td><%= item.price %></td>
+                        <td><%= item.genre.name %></td>
+                        <td>
+                            <% if item.is_active %>
+                            <div class = "text-success">
+                                販売中
+                            </div>
+                            <% else %>
+                            <div class = "text-secondary">
+                                販売停止中
+                            </div>
+                            <% end %>
+                        </td>
+                    </tr>
+                </tbody>
+                <% end %>
+            </table>
+        </div>
+    </div>
+    <%= paginate @items %>
+</div>
